@@ -1,10 +1,22 @@
-import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+import MainNavBar from './components/navigation/MainNavBar';
+import routes from './routeConfig';
 
 export default function App() {
   return (
-    <Container textAlign='center'>
-      <Header as={'h1'}>Hello World</Header>
-    </Container>
+    <BrowserRouter>
+    <MainNavBar />
+      <Container fluid>
+        <Routes>
+          {routes.map(route =>
+            <Route
+              key={route.path}
+              path={route.path}
+              element={route.component}>
+            </Route>)}
+        </Routes>
+      </Container>
+    </BrowserRouter>
   )
 };
