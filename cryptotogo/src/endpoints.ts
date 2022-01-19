@@ -6,3 +6,5 @@ export const coingeckoCoinsList = `${coingeckoBaseUrl}/coins/list`;
  // coingecko trending
  export const coingeckoCoinsTrending = `${coingeckoBaseUrl}/search/trending`;
  
+  // coingecko search
+ export const coingeckoSearch = `${coingeckoBaseUrl}/search?query=`
