@@ -5,3 +5,4 @@ export const coingeckoCoinsList = `${coingeckoBaseUrl}/coins/list`;
 
  // coingecko trending
  export const coingeckoCoinsTrending = `${coingeckoBaseUrl}/search/trending`;
+ 
