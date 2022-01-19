@@ -1,3 +1,4 @@
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import MainNavBar from './components/navigation/MainNavBar';
