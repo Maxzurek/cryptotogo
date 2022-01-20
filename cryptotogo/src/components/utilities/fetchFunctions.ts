@@ -2,7 +2,7 @@ import axios from "axios";
 import { coingeckoCoinDataByIdStart, coingeckoCoinDataByIdEnd } from "../../endpoints";
 import { CoinDTO } from "../../models/coin.models";
 
-export const fetchCoinInfo = async (id: string) : Promise<CoinDTO> => {
+export const fetchCoinInfo = async (id: string) : Promise<CoinDTO> => { // Goingecko get market_data by coin Id
 
     let coinDTO: CoinDTO = {
         id: "",
@@ -19,7 +19,8 @@ export const fetchCoinInfo = async (id: string) : Promise<CoinDTO> => {
         .then(response => {
 
             let data = response.data;
-
+            
+            // We only keep the data we want
             coinDTO.id = data.id;
             coinDTO.name = data.name;
             coinDTO.symbol = data.symbol;
