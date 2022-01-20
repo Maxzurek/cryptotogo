@@ -14,6 +14,7 @@ export default function App() {
 
   const [fetchTimer, setFetchTimer] = useState<NodeJS.Timeout>();
   const [fetchData, setFetchData] = useState<boolean>(false);
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('usd');
   const [coingeckoTrending, setCoingeckoTrending] = useState<CoinDTO[]>([]);
   const [isLoadingData, setLoadingData] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -31,8 +32,8 @@ export default function App() {
           coins.splice(6)
 
           coins.map((coin: any, index: number) => {
-
             requests.push(fetchCoinInfo(coin.item.id))
+            return ()=>{}
           })
 
           await axios.all(requests)
@@ -61,6 +62,8 @@ export default function App() {
     <AppDataContext.Provider value={{
       coingeckTrending: coingeckoTrending,
       setCoingeckTrending: setCoingeckoTrending,
+      selectedCurrency,
+      setSelectedCurrency: setSelectedCurrency,
       isLoadingData,
       setLoadingData: setLoadingData,
       errorMessage,

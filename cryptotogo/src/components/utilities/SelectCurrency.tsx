@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Select } from "semantic-ui-react";
+import AppDataContext from "../contexts/AppDataContext";
 
 
 interface selectCurrencyProps {
@@ -8,11 +9,11 @@ interface selectCurrencyProps {
 
 export default function SelectCurrency(props: selectCurrencyProps) {
 
-    const [currency, setCurrency] = useState();
+    const {selectedCurrency, setSelectedCurrency} = useContext(AppDataContext);
  
     const currencyOptions = [
 
-        { key: 'usd', value: 'usd', text: 'usd' },
+        { key: 'usd', value: 'usd', text: 'USD' },
         { key: 'CAD', value: 'cad', text: 'CAD' },
         { key: 'EUR', value: 'eur', text: 'EUR' },
         { key: 'BTC', value: 'btc', text: 'BTC' },
@@ -25,14 +26,10 @@ export default function SelectCurrency(props: selectCurrencyProps) {
     ]
 
     const onChangeCurrency = (event: React.SyntheticEvent<HTMLElement, Event>, data: any) => {
-        setCurrency(data.value)
-
-        let currency = data.value as string
-        console.log(currency)
-
+        setSelectedCurrency(data.value)
     }
 
     return (
-        <Select fluid options={currencyOptions} onChange={onChangeCurrency} value={currency} />
+        <Select fluid options={currencyOptions} onChange={onChangeCurrency} value={selectedCurrency} />
     )
 }

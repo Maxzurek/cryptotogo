@@ -5,6 +5,9 @@ const AppDataContext = React.createContext<{
     coingeckTrending: CoinDTO[];
     setCoingeckTrending(coingeckTrending: CoinDTO[]): void;
 
+    selectedCurrency: string;
+    setSelectedCurrency(selectedCurrency: string): void;
+
     isLoadingData: boolean;
     setLoadingData(isLoadingData: boolean): void;
 
@@ -14,6 +17,9 @@ const AppDataContext = React.createContext<{
 }>({
     coingeckTrending: [],
     setCoingeckTrending: () => { },
+
+    selectedCurrency: 'usd',
+    setSelectedCurrency: () => { },
 
     isLoadingData: true,
     setLoadingData: () => { },
