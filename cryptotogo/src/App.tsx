@@ -21,25 +21,25 @@ export default function App() {
 
   useEffect(() => {
 
-    const getCoinsTrending = async () => {
+    const getCoinsTrendingAsync = async () => {
 
       let requests: any[] = [];
 
-      await axios.get(coingeckoCoinsTrending)
+      await axios.get(coingeckoCoinsTrending) // Coingecko API get method
         .then(async (response) => {
 
           let coins: [] = response.data.coins;
-          coins.splice(6)
+          coins.splice(6) // Keep only top 6 coins, API returns top 7
 
-          coins.map((coin: any, index: number) => {
-            requests.push(fetchCoinInfo(coin.item.id))
+          coins.map((coin: any, index: number) => { 
+            requests.push(fetchCoinInfo(coin.item.id)) // See fetchFunctions.ts inside utilities folder
             return ()=>{}
           })
 
-          await axios.all(requests)
+          await axios.all(requests) // Get additionnal infos for each trending coins (Goingecko get market_data by coin Id)
             .then((responses: CoinDTO[]) => {
               setCoingeckoTrending(responses)
-              setLoadingData(false);
+              setLoadingData(false); // Used for the dimmer component inside the LandingPage
             })
 
         })
@@ -48,18 +48,18 @@ export default function App() {
         })
     }
 
-    setFetchTimer(
+    setFetchTimer( // Update trending coins every 30 seconds
       setTimeout(() => {
         setFetchData(!fetchData)
-      }, 20000)
+      }, 30000)
     );
 
-    getCoinsTrending();
+    getCoinsTrendingAsync();
 
   }, [fetchData])
 
   return (
-    <AppDataContext.Provider value={{
+    <AppDataContext.Provider value={{  // This context provider is available through all our application.
       coingeckTrending: coingeckoTrending,
       setCoingeckTrending: setCoingeckoTrending,
       selectedCurrency,
