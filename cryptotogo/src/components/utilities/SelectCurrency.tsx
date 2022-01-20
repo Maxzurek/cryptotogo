@@ -15,12 +15,12 @@ export default function SelectCurrency(props: selectCurrencyProps) {
         { key: 'usd', value: 'usd', text: 'usd' },
         { key: 'CAD', value: 'cad', text: 'CAD' },
         { key: 'EUR', value: 'eur', text: 'EUR' },
-        { key: 'BTC', value: 'BTC', text: 'BTC' },
-        { key: 'BNB', value: 'BNB', text: 'BNB' },
-        { key: 'XRP', value: 'XRP', text: 'XRP' },
-        { key: 'BITS', value: 'BITS', text: 'BITS' },
-        { key: 'ZAR', value: 'ZAR', text: 'ZAR' },
-        { key: 'TWD', value: 'TWD', text: 'TWD' },
+        { key: 'BTC', value: 'btc', text: 'BTC' },
+        { key: 'BNB', value: 'bnb', text: 'BNB' },
+        { key: 'XRP', value: 'xrp', text: 'XRP' },
+        { key: 'BITS', value: 'bits', text: 'BITS' },
+        { key: 'ZAR', value: 'zar', text: 'ZAR' },
+        { key: 'TWD', value: 'twd', text: 'TWD' },
 
     ]
 
