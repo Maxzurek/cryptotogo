@@ -39,7 +39,7 @@ export default function CoinDetail(props: coinDetailProps) {
                                     :
                                     undefined} ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}
                         </Card.Description>
-                        <Card.Meta as='h2'>{`Market Cap : ${props.theCoinDetailDTO?.market_cap_rank}`} </Card.Meta>
+                        <Card.Meta as='h2'>{`Market Cap Rank : ${props.theCoinDetailDTO?.market_cap_rank}`} </Card.Meta>
                     </Container>
                 </Card.Content>
             </Card>
