@@ -2,8 +2,9 @@ import axios from "axios"
 import { useState, useReducer } from "react"
 import { useNavigate } from "react-router-dom"
 import { Search, SearchProps, SearchResultData } from "semantic-ui-react"
-import { coingeckoCoinDataByIdEnd, coingeckoCoinDataByIdStart, coingeckoSearch } from "../../endpoints"
-import { CoinDTO, CoinSearchDTO } from "../../models/coin.models"
+import { coingeckoSearch } from "../../endpoints"
+import { CoinDTO } from "../../models/coin.models"
+import { fetchCoinInfo } from "./fetchFunctions"
 
 interface SearchResult {
     id: string;
@@ -30,9 +31,9 @@ const initialState: State = {
     value: '',
 }
 
-const reducer = (state: State, action: Action): State => {
+const reducer = (state: State, action: Action): State => { // We got a dispatch. Send the appropriate state depending of the action type send by the dispatch
     switch (action.type) {
-        case 'CLEAN_QUERY':
+        case 'CLEAN_QUERY': 
             return initialState
         case 'START_SEARCH':
             return { ...state, loading: true, value: action.query }
@@ -63,7 +64,7 @@ export default function SearchBar(props: SearchBarProps) {
     const [{ loading, results, value }, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
-    const searchCoin = async (keyword: string) => {
+    const searchCoin = async (keyword: string) => { // coingecko API call to search for coins by keyword
 
         try {
 
@@ -86,17 +87,25 @@ export default function SearchBar(props: SearchBarProps) {
                 searchResult.image = coin.large;
 
                 searchResults.push(searchResult);
-
             })
 
             dispatch({ type: 'FINISH_SEARCH', results: searchResults })
         }
         catch (error) {
+
+            let searchResult: SearchResult[] = [{
+                id: "",
+                title: "Internal Server Error",
+                description: "Please try again later",
+                image: ""
+            }]
+
+            dispatch({ type: 'FINISH_SEARCH', results: searchResult})
             console.log(error);
         }
     }
 
-    const handleSearchChange = (event: React.MouseEvent<HTMLElement>, data: SearchProps) => {
+    const handleSearchChange = (event: React.MouseEvent<HTMLElement>, data: SearchProps) => { // Search component input changed
 
         const keyword = data.value;
         dispatch({ type: 'START_SEARCH', query: data.value });
@@ -106,7 +115,7 @@ export default function SearchBar(props: SearchBarProps) {
             setTimer(undefined);
         }
 
-        setTimer(
+        setTimer(  //Set a 500ms timer. We want to wait for the user to stop typing to send an API call.
             setTimeout(() => {
 
                 if (!keyword || keyword?.length === 0) {
@@ -120,44 +129,14 @@ export default function SearchBar(props: SearchBarProps) {
         );
     }
 
-    const fetchCoinInfo = async (id: string): Promise<CoinDTO> => {
-
-        let coinDTO: CoinDTO = {
-            id: "",
-            name: "",
-            symbol: "",
-            market_cap_rank: 0,
-            thumb: "",
-            small: "",
-            large: "",
-            current_price: undefined
-        };
-
-        await axios.get(`${coingeckoCoinDataByIdStart}${id}${coingeckoCoinDataByIdEnd}`)
-            .then(response => {
-
-                let data = response.data;
-
-                coinDTO.id = data.id;
-                coinDTO.name = data.name;
-                coinDTO.symbol = data.symbol;
-                coinDTO.market_cap_rank = data.market_cap_rank;
-                coinDTO.thumb = data.image.thumb;
-                coinDTO.small = data.image.small;
-                coinDTO.large = data.image.large;
-                coinDTO.current_price = data.market_data.current_price;
-            })
-            .catch(error => console.log(error))
-
-        return coinDTO;
-    }
-
-    const handleResultSelect = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: SearchResultData) => {
+    const handleResultSelect = async ( // User selected an item in the result box.
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        data: SearchResultData) => {
 
         const selectedResult: SearchResult = data.result;
-        const coinDTO: CoinDTO = await fetchCoinInfo(selectedResult.id);
+        const coinDTO: CoinDTO = await fetchCoinInfo(selectedResult.id); // Fetch the coin data needed for our DTO
 
-        navigate('/coin', { state: { coinDTO } })
+        navigate('/coin', { state: { coinDTO } }) // We want to send our coinDTO to the page we are navigating to
     }
 
     return (
