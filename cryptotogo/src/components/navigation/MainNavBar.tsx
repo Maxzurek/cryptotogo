@@ -26,8 +26,7 @@ export default function MainNavBar(props: MainNavBarProps) {
                     <SearchBar />
                 </GridColumn>
                 <GridColumn width={3}>
-                    
-               <Header  textAlign="right" as='h3'>Select Currency</Header>
+                    <Header textAlign="right" as='h3' style={{ padding: 5 }} >Select Currency</Header>
                 </GridColumn>
                 <GridColumn width={2}>
                     <SelectCurrency />
