@@ -37,7 +37,7 @@ export default function CoinDetail(props: coinDetailProps) {
                             {`Last Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
                                     props.theCoinDetailDTO.current_price[selectedCurrency]
                                     :
-                                    undefined} $`}
+                                    undefined} ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}
                         </Card.Description>
                         <Card.Meta as='h2'>{`Market Cap : ${props.theCoinDetailDTO?.market_cap_rank}`} </Card.Meta>
                     </Container>
