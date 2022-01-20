@@ -7,7 +7,7 @@ export interface CoinDTO{
     thumb : string
     small:string
     large:string
-    current_price : Currencies | undefined
+    current_price : any
 }
 
 export interface Currencies{
