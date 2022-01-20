@@ -3,38 +3,42 @@ import { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
 import { coingeckoCoinsTrending } from "../../endpoints";
 import { CoinDTO } from "../../models/coin.models";
-import CoinCards from "../CoinCards";
+import CoinCards from "../utilities/CoinCards";
+import { fetchCoinInfo } from "../utilities/fetchFunctions";
 
-interface LandingPageProps{
 
-}
+export default function LandingPage() {
 
-export default function LandingPage(props: LandingPageProps) {
-    
     const [coingeckTrending, setCoingeckTrending] = useState<CoinDTO[]>([]);
 
     useEffect(() => {
 
-        const fetchCoinData = async () => {
+        const fetchData = async () => {
 
             await axios.get(coingeckoCoinsTrending)
                 .then((response) => {
 
-                    let coinTrending = response.data;
-                    if (coinTrending === "") {
-                        coinTrending = undefined;
-                    }
-                    setCoingeckTrending(coinTrending)
+                    response.data.coins.map(async (coin: any) => {
+
+                      const coinDTO: CoinDTO = await fetchCoinInfo(coin.item.id)
+
+                     // console.log(coinDTO)
+                      setCoingeckTrending(prevCoinTrending=>[...prevCoinTrending, coinDTO])
+
+                    })
+
                 })
                 .catch(error => { return console.log(error) })
         }
-        fetchCoinData();
+        fetchData();
 
     }, [])
 
     return (
-       <Container>
-         <CoinCards theCoingeckoDTO = {coingeckTrending}/>
-       </Container>
+        <Container>
+            <CoinCards theCoingeckoDTO={coingeckTrending} />
+        </Container>
     )
 };
+
+
