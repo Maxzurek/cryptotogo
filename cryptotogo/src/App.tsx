@@ -13,6 +13,7 @@ import AppDataContext from './components/contexts/AppDataContext';
 export default function App() {
 
   const [fetchTimer, setFetchTimer] = useState<NodeJS.Timeout>();
+  const [dataTimer, setDataTimer] = useState<NodeJS.Timeout>();
   const [fetchData, setFetchData] = useState<boolean>(false);
   const [coingeckoTrending, setCoingeckoTrending] = useState<CoinDTO[]>([]);
   const [isLoadingData, setLoadingData] = useState<boolean>(true);
@@ -25,15 +26,21 @@ export default function App() {
       await axios.get(coingeckoCoinsTrending)
         .then((response) => {
 
-          var coinDTOs: CoinDTO[] = [];
+          let coins: [] = response.data.coins;
+          let coinDTOs: CoinDTO[] = [];
 
-          response.data.coins.map(async (coin: any) => {
+          coins.map(async (coin: any) => {
 
-            const coinDTO: CoinDTO = await fetchCoinInfo(coin.item.id)
-            coinDTOs.push(coinDTO)
+            let coinDTO: CoinDTO = await fetchCoinInfo(coin.item.id)
+            coinDTOs.push(coinDTO);
           })
-          console.log(coinDTOs)
-          setCoingeckoTrending(coinDTOs)
+
+          setDataTimer(
+            setTimeout(() => {
+              setCoingeckoTrending(coinDTOs)
+            }, 1000)
+          );
+
           setLoadingData(false);
         })
         .catch((error: AxiosError) => {
@@ -44,12 +51,12 @@ export default function App() {
     setFetchTimer(
       setTimeout(() => {
         setFetchData(!fetchData)
-      }, 10000)
+      }, 5000)
     );
 
     getCoinsTrending();
 
-  }, [fetchData])
+  }, [])
 
   return (
     <AppDataContext.Provider value={{
