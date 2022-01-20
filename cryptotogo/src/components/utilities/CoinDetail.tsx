@@ -26,7 +26,7 @@ export default function CoinDetail(props: coinDetailProps) {
                 <Container as={'a'} fluid onClick={onClickCoin}>
                     <Image src={props.theCoinDetailDTO.small} />
                     <Card.Header as='h2'>{props.theCoinDetailDTO.name}{` (${props.theCoinDetailDTO.symbol})`}</Card.Header>
-                    <Card.Description as='h3'> {`Last Price (USD) : ${props.theCoinDetailDTO.current_price?.ars} $`}</Card.Description>
+                    <Card.Description as='h3'> {`Last Price (USD) : ${props.theCoinDetailDTO.current_price?.usd} $`}</Card.Description>
                     <Card.Meta as='h2'>{`Market Cap : ${props.theCoinDetailDTO.market_cap_rank}`} </Card.Meta>
                     </Container>
             </Card.Content>
