@@ -141,6 +141,7 @@ export default function SearchBar(props: SearchBarProps) {
 
     return (
         <Search
+            style={{padding: 10}}
             fluid
             input={{ fluid: true }}
             placeholder='Search coins'
