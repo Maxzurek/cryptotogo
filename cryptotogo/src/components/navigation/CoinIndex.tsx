@@ -34,8 +34,6 @@ export default function CoinIndex(props: CoinIndexProps) {
   const [activeItem, setActiveItem] = useState('1D')
   const [xAxisInterval, setxAxisInterval] = useState(1)
 
-  const menuStyle = {padding : "10px 25px", margin: "-1px 80px"}
-
   const handleItemClick = (e: any, { name }: any) => {
     console.log("click")
     setActiveItem(name);
@@ -112,31 +110,26 @@ export default function CoinIndex(props: CoinIndexProps) {
           name='1D'
           active={activeItem === '1D'}
           onClick={handleItemClick}
-          style = {menuStyle}
         />
         <Menu.Item
           name='5D'
           active={activeItem === '5D'}
           onClick={handleItemClick}
-          style = {menuStyle}
         />
         <Menu.Item
           name='1M'
           active={activeItem === '1M'}
           onClick={handleItemClick}
-          style = {menuStyle}
         />
         <Menu.Item
           name='6M'
           active={activeItem === '6M'}
           onClick={handleItemClick}
-          style = {menuStyle}
         />
         <Menu.Item
           name='1Y'
           active={activeItem === '1Y'}
           onClick={handleItemClick}
-          style = {menuStyle}
         />
 
       </Menu>
