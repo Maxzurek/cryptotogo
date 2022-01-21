@@ -61,7 +61,7 @@ export default function CoinIndex(props: CoinIndexProps) {
       case '1Y':
         setDays('365')
         setInterval('daily')
-        setxAxisInterval(12)
+        setxAxisInterval(25)
         break;
     }
 
