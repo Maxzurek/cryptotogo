@@ -107,7 +107,7 @@ export default function CoinIndex(props: CoinIndexProps) {
   return (
     <div style = {{width:"100%", height:"100%"}}>
       <CoinCardPage theCoinDetailDTO={coinDTO} clickable={false} />
-      <Menu fluid tabular>
+      <Menu fluid tabular size = 'large' widths={10}>
         <Menu.Item
           name='1D'
           active={activeItem === '1D'}
