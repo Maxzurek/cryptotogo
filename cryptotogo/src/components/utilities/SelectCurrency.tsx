@@ -11,8 +11,8 @@ export default function SelectCurrency(props: selectCurrencyProps) {
 
     const {selectedCurrency, setSelectedCurrency} = useContext(AppDataContext);
  
+    //select Currency values
     const currencyOptions = [
-
         { key: 'usd', value: 'usd', text: 'USD' },
         { key: 'CAD', value: 'cad', text: 'CAD' },
         { key: 'EUR', value: 'eur', text: 'EUR' },

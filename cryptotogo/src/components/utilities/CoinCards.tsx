@@ -1,14 +1,14 @@
 import { Grid } from "semantic-ui-react"
 import { CoinDTO } from "../../models/coin.models"
 import CoinDetail from "./CoinDetail"
-import SearchBar from "./SearchBar"
-
 
 export default function CoinCards(props: coinCardsProps) {
 
     const renderGridColumn = () => {
 
         return (
+         // we loop on coingeck Trending data to get detailed information of each coin 
+         // and transfer it to CoinDetail component
          props.theCoingeckoDTO.map((theCoinData, index) =>
                 <Grid.Column key={index}>
                     <CoinDetail
@@ -17,7 +17,6 @@ export default function CoinCards(props: coinCardsProps) {
                     />
                 </Grid.Column>
             )
-          
         )
     }
 

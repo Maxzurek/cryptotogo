@@ -8,7 +8,6 @@ import AppDataContext from "../contexts/AppDataContext";
 interface coinDetailProps {
     theCoinDetailDTO: CoinDTO;
     clickable? : boolean
-
 }
 
 CoinDetail.defaultProps = {
@@ -17,26 +16,26 @@ CoinDetail.defaultProps = {
 export default function CoinDetail(props: coinDetailProps) {
 
     const { selectedCurrency } = useContext(AppDataContext);
-
     const [isFlipped, setFlipped] = useState(false);
 
     const navigate = useNavigate();
 
+   //set filp animation of the cards when theCoinDetailDTO values change
     useEffect(() => {
         setFlipped(!isFlipped);
     }, [props.theCoinDetailDTO])
 
+    //When we click on each coin card, we tranfer its detail data to /coin page
     const onClickCoin = () => {
-        
        if(props.clickable){
-        const coinDTO: CoinDTO = props.theCoinDetailDTO;
+         const coinDTO: CoinDTO = props.theCoinDetailDTO;
          navigate('/coin', { state: { coinDTO } }) 
        }
     }
 
+    //We map detail information for each coin card
     const renderCard = () => {
         return (
-        
                 <Card>
                     <Card.Content>
                         <Container as={'a'} fluid onClick={onClickCoin}>
