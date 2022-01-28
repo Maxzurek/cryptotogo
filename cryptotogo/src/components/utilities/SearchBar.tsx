@@ -33,7 +33,7 @@ const initialState: State = {
 
 const reducer = (state: State, action: Action): State => { // We got a dispatch. Send the appropriate state depending of the action type send by the dispatch
     switch (action.type) {
-        case 'CLEAN_QUERY': 
+        case 'CLEAN_QUERY':
             return initialState
         case 'START_SEARCH':
             return { ...state, loading: true, value: action.query }
@@ -100,7 +100,7 @@ export default function SearchBar(props: SearchBarProps) {
                 image: ""
             }]
 
-            dispatch({ type: 'FINISH_SEARCH', results: searchResult})
+            dispatch({ type: 'FINISH_SEARCH', results: searchResult })
             console.log(error);
         }
     }
@@ -141,7 +141,6 @@ export default function SearchBar(props: SearchBarProps) {
 
     return (
         <Search
-            style={{padding: 10}}
             fluid
             input={{ fluid: true }}
             placeholder='Search coins'
