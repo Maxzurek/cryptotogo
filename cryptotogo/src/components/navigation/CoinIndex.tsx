@@ -96,7 +96,7 @@ export default function CoinIndex(props: CoinIndexProps) {
   useEffect(() => {
     getData();
 
-  }, [selectedCurrency, days])
+  }, [selectedCurrency, days, coinDTO])
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
