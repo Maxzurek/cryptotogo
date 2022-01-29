@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Grid, Menu, GridRow, GridColumn, Item, Image, Header, Container } from "semantic-ui-react";
-import Media from "../mediaContext/Media";
+import Media from "../mediaProvider/Media";
 import SearchBar from "../utilities/SearchBar";
 import SelectCurrency from "../utilities/SelectCurrency";
 

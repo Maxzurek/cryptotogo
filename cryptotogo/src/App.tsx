@@ -9,7 +9,7 @@ import { fetchCoinInfo } from './components/utilities/fetchFunctions';
 import { coingeckoCoinsTrending } from './endpoints';
 import { CoinDTO } from './models/coin.models';
 import AppDataContext from './components/appDataContext/AppDataContext';
-import MediaProvider from './components/mediaContext/MediaProvider';
+import MediaProvider from './components/mediaProvider/MediaProvider';
 
 export default function App() {
 
