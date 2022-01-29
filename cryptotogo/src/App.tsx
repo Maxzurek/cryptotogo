@@ -9,6 +9,7 @@ import { fetchCoinInfo } from './components/utilities/fetchFunctions';
 import { coingeckoCoinsTrending } from './endpoints';
 import { CoinDTO } from './models/coin.models';
 import AppDataContext from './components/contexts/AppDataContext';
+import MediaProvider from './components/mediaContext/MediaProvider';
 
 export default function App() {
 
@@ -31,9 +32,9 @@ export default function App() {
           let coins: [] = response.data.coins;
           coins.splice(6) // Keep only top 6 coins, API returns top 7
 
-          coins.map((coin: any, index: number) => { 
+          coins.map((coin: any, index: number) => {
             requests.push(fetchCoinInfo(coin.item.id)) // See fetchFunctions.ts inside utilities folder
-            return ()=>{}
+            return () => { }
           })
 
           await axios.all(requests) // Get additionnal infos for each trending coins (Goingecko get market_data by coin Id)
@@ -70,17 +71,19 @@ export default function App() {
       setErrorMessage: setErrorMessage
     }}>
       <BrowserRouter>
-        <MainNavBar />
-        <Container fluid>
-          <Routes>
-            {routes.map(route =>
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.component}>
-              </Route>)}
-          </Routes>
-        </Container>
+        <MediaProvider>
+          <MainNavBar />
+          <Container fluid>
+            <Routes>
+              {routes.map(route =>
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}>
+                </Route>)}
+            </Routes>
+          </Container>
+        </MediaProvider>
       </BrowserRouter>
     </AppDataContext.Provider>
   )
