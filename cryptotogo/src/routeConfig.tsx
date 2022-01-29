@@ -1,5 +1,5 @@
-import CoinIndex from "./components/navigation/CoinIndex";
-import LandingPage from "./components/navigation/LandingPage";
+import CoinIndex from "./components/coinIndex/CoinIndex";
+import LandingPage from "./components/landingPage/LandingPage";
 
 const routes = [
     {path: '/coin', component: <CoinIndex />},

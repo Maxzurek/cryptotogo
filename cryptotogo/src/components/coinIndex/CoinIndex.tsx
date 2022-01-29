@@ -6,7 +6,7 @@ import { Menu } from "semantic-ui-react";
 import { coingeckoCoinMarketData } from "../../endpoints";
 import { CoinDTO } from "../../models/coin.models";
 import AppDataContext from "../appDataContext/AppDataContext";
-import CoinCardPage from "../utilities/CoinCardPage";
+import CoinCardPage from "./CoinCardPage";
 
 
 interface StateType {
