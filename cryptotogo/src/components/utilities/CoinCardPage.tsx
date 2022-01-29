@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import ReactCardFlip from "react-card-flip";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Card, Container, Grid, GridColumn, GridRow, Image, Item, Menu, Segment } from "semantic-ui-react";
+import { Container, Grid, GridColumn, GridRow, Image } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
 import AppDataContext from "../contexts/AppDataContext";
 
@@ -18,21 +16,12 @@ export default function CoinCardPage(props: CoinCardPageProps) {
 
     const { selectedCurrency } = useContext(AppDataContext);
 
-    const navigate = useNavigate();
-
     const date = new Date().toLocaleString();
 
     useEffect(() => {
 
     }, [props.theCoinDetailDTO])
 
-    const onClickCoin = () => {
-
-        if (props.clickable) {
-            const coinDTO: CoinDTO = props.theCoinDetailDTO;
-            navigate('/coin', { state: { coinDTO } })
-        }
-    }
 
     const renderCard = () => {
         return (
@@ -53,22 +42,13 @@ export default function CoinCardPage(props: CoinCardPageProps) {
                                 undefined} ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}</h4>
                             <h5>Current Time: {date}</h5>
                         </GridColumn>
-
                     </GridRow>
-
                 </Grid>
-
-
-
-
             </Container>
         )
     }
 
     return (
-
         renderCard()
-
-
     )
 }
