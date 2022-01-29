@@ -136,6 +136,7 @@ export default function SearchBar(props: SearchBarProps) {
         const selectedResult: SearchResult = data.result;
         const coinDTO: CoinDTO = await fetchCoinInfo(selectedResult.id); // Fetch the coin data needed for our DTO
 
+        dispatch({ type: 'CLEAN_QUERY'})
         navigate('/coin', { state: { coinDTO } }) // We want to send our coinDTO to the page we are navigating to
     }
 
