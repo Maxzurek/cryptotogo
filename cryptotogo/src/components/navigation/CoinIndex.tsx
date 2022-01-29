@@ -34,8 +34,7 @@ export default function CoinIndex(props: CoinIndexProps) {
   const [activeItem, setActiveItem] = useState('1D')
   const [xAxisInterval, setxAxisInterval] = useState(1)
 
-  const handleItemClick = (e: any, { name }: any) => {
-    console.log("click")
+  const handleItemClick = (e: any, { name }: any) => { //handle the tab clicked to change the days and interval of the chart
     setActiveItem(name);
     switch (name) {
       case '1D':
@@ -61,12 +60,12 @@ export default function CoinIndex(props: CoinIndexProps) {
       case '1Y':
         setDays('365')
         setInterval('daily')
-        setxAxisInterval(25)
+        setxAxisInterval(6)
         break;
     }
 
   }
-  async function getData() {
+  async function getData() { // get the data of the coins clicked
 
     await axios.get(`${coingeckoCoinMarketData}${coinDTO.id}/market_chart?vs_currency=${selectedCurrency}&days=${days}&interval=${interval}`)
       .then(response => {
@@ -80,15 +79,13 @@ export default function CoinIndex(props: CoinIndexProps) {
           };
           if (days === '1') {
             priceAction.name = new Date(price[0]).toLocaleTimeString();
-          }else if(days === '5'){
+          } else if (days === '5') {
             priceAction.name = new Date(price[0]).toLocaleString();
           } else {
             priceAction.name = new Date(price[0]).toLocaleDateString();
           }
           priceAction.price = price[1];
           priceActions.push(priceAction);
-
-
         })
 
         setPriceActions(priceActions)
@@ -101,11 +98,10 @@ export default function CoinIndex(props: CoinIndexProps) {
 
   }, [selectedCurrency, days])
 
-
   return (
-    <div style = {{width:"100%", height:"100%"}}>
+    <div style={{ width: "100%", height: "100%" }}>
       <CoinCardPage theCoinDetailDTO={coinDTO} clickable={false} />
-      <Menu fluid tabular size = 'large' widths={10}>
+      <Menu fluid tabular size='large' widths={10}>
         <Menu.Item
           name='1D'
           active={activeItem === '1D'}
@@ -143,7 +139,7 @@ export default function CoinIndex(props: CoinIndexProps) {
               <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" interval={xAxisInterval}/>
+          <XAxis dataKey="name" interval={xAxisInterval} />
           <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
@@ -153,7 +149,4 @@ export default function CoinIndex(props: CoinIndexProps) {
     </div>
 
   );
-
-
-
 };
