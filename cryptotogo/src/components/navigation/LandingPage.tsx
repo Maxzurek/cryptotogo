@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Container, Dimmer, Header, Loader } from "semantic-ui-react";
-import AppDataContext from "../contexts/AppDataContext";
+import AppDataContext from "../appDataContext/AppDataContext";
 import CoinCards from "../utilities/CoinCards";
 
 

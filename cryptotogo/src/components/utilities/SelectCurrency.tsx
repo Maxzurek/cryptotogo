@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Select } from "semantic-ui-react";
-import AppDataContext from "../contexts/AppDataContext";
+import AppDataContext from "../appDataContext/AppDataContext";
 
 
 interface selectCurrencyProps {

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Container, Grid, GridColumn, GridRow, Image } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
-import AppDataContext from "../contexts/AppDataContext";
+import AppDataContext from "../appDataContext/AppDataContext";
 
 interface CoinCardPageProps {
     theCoinDetailDTO: CoinDTO;

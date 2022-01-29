@@ -3,7 +3,7 @@ import ReactCardFlip from "react-card-flip";
 import { useNavigate } from "react-router-dom";
 import { Card, Container, Image, Segment } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
-import AppDataContext from "../contexts/AppDataContext";
+import AppDataContext from "../appDataContext/AppDataContext";
 
 interface coinDetailProps {
     theCoinDetailDTO: CoinDTO;

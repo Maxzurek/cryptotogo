@@ -5,7 +5,7 @@ import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YA
 import { Menu } from "semantic-ui-react";
 import { coingeckoCoinMarketData } from "../../endpoints";
 import { CoinDTO } from "../../models/coin.models";
-import AppDataContext from "../contexts/AppDataContext";
+import AppDataContext from "../appDataContext/AppDataContext";
 import CoinCardPage from "../utilities/CoinCardPage";
 
 
