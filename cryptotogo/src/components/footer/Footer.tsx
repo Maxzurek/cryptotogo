@@ -9,8 +9,8 @@ interface FooterProps extends ThemeContextProps {
 
 function Footer(props: FooterProps) {
     return (
-        <Container style={{paddingTop: 80}}>
-            <Menu fixed="bottom" icon='labeled' size="tiny" style={{ marginTop: -10 }}>
+        <Container style={{ paddingTop: 80 }}>
+            <Menu fixed="bottom" icon='labeled' size="tiny" style={{ marginTop: -10, backgroundColor: props.theme.backgroundColor }} >
                 <MenuItem>
                     <Icon name="theme" color={props.theme.primaryColor} />
                     Choose a theme

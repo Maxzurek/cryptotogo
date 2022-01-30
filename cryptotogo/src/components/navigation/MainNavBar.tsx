@@ -14,7 +14,7 @@ function MainNavBar(props: MainNavBarProps) {
 
     const renderMobileNavBar = () => {
         return (
-            <>
+            <Container fluid style={{ backgroundColor: props.theme.backgroundColor}}>
                 <Grid
                     as={Menu}
                     pointing
@@ -43,42 +43,44 @@ function MainNavBar(props: MainNavBarProps) {
                 <Container>
                     <SearchBar />
                 </Container>
-            </>
+            </Container>
         )
     }
 
     const renderTabletDesktopNavBar = () => {
         return (
-            <Grid
-                as={Menu}
-                stackable
-                pointing
-                secondary
-                size={props.size}
-                color={props.theme.primaryColor}
-                verticalAlign="bottom"
-            >
-                <GridRow style={{ padding: 0 }}>
-                    <GridColumn width={2}>
-                        <Item as={NavLink} to='/'>
-                            <Image src="/images/CryptoToGo_Logo.ico" size="small" />
-                        </Item>
-                    </GridColumn>
-                    <GridColumn width={3}>
-                    </GridColumn>
-                    <GridColumn width={6}>
-                        <SearchBar />
-                    </GridColumn>
-                    <GridColumn width={3}>
-                        <Header as='h3' textAlign="right" style={{ padding: 5 }} color={props.theme.primaryColor}>
-                            Select a Currency
-                        </Header>
-                    </GridColumn>
-                    <GridColumn width={2}>
-                        <SelectCurrency />
-                    </GridColumn>
-                </GridRow>
-            </Grid>
+            <Container fluid style={{ backgroundColor: props.theme.backgroundColor}}>
+                <Grid
+                    as={Menu}
+                    stackable
+                    pointing
+                    secondary
+                    size={props.size}
+                    color={props.theme.primaryColor}
+                    verticalAlign="bottom"
+                >
+                    <GridRow style={{ padding: 0 }}>
+                        <GridColumn width={2}>
+                            <Item as={NavLink} to='/'>
+                                <Image src="/images/CryptoToGo_Logo.ico" size="small" />
+                            </Item>
+                        </GridColumn>
+                        <GridColumn width={3}>
+                        </GridColumn>
+                        <GridColumn width={6}>
+                            <SearchBar />
+                        </GridColumn>
+                        <GridColumn width={3}>
+                            <Header as='h3' textAlign="right" style={{ padding: 5 }} color={props.theme.primaryColor}>
+                                Select a Currency
+                            </Header>
+                        </GridColumn>
+                        <GridColumn width={2}>
+                            <SelectCurrency />
+                        </GridColumn>
+                    </GridRow>
+                </Grid>
+            </Container>
         )
     }
 

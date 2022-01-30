@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { CryptoToGoTheming } from "../../themes/theme.models";
-import { PrimaryTheme } from "../../themes/themes";
+import { MovieToGoTheme } from "../../themes/themes";
 import { ThemeContext } from "./ThemeContext";
 
 interface ThemeProviderProps{
@@ -9,7 +9,7 @@ interface ThemeProviderProps{
 
 export default function ThemeProvider(props: ThemeProviderProps) {
 
-    const [theme, setTheme] = useState<CryptoToGoTheming>(PrimaryTheme);
+    const [theme, setTheme] = useState<CryptoToGoTheming>(MovieToGoTheme);
 
     return(
         <ThemeContext.Provider value={{

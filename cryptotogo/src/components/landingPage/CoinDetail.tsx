@@ -39,37 +39,38 @@ function CoinDetail(props: coinDetailProps) {
     //We map detail information for each coin card
     const renderCard = () => {
         return (
-            <Card color={props.theme.primaryColor}>
-                <Card.Content>
-                    <Container as={'a'} fluid onClick={onClickCoin}>
-                        <Image src={props.theCoinDetailDTO?.small} />
-                        <Header as='h2' color={props.theme.primaryColor}>
-                            {props.theCoinDetailDTO?.name}{` (${props.theCoinDetailDTO?.symbol})`}
-                        </Header>
-                        <Header as='h3' color={props.theme.secondaryColor}>
-                            {`Last Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
-                                props.theCoinDetailDTO.current_price[selectedCurrency]
-                                :
-                                undefined} 
+            <Container>
+                <Card color={props.theme.primaryColor} >
+                    <Card.Content>
+                        <Container as={'a'} fluid onClick={onClickCoin}>
+                            <Image src={props.theCoinDetailDTO?.small} />
+                            <Header as='h2' color={props.theme.primaryColor}>
+                                {props.theCoinDetailDTO?.name}{` (${props.theCoinDetailDTO?.symbol})`}
+                            </Header>
+                            <Header as='h3' color={props.theme.secondaryColor}>
+                                {`Last Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
+                                    props.theCoinDetailDTO.current_price[selectedCurrency]
+                                    :
+                                    undefined} 
                                 ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`
-                            }
-                        </Header>
-                        <Header as='h3' color={props.theme.secondaryColor}>
-                            {props.theCoinDetailDTO.market_data.price_change_percentage_24h >= 0 ?
-                                <Icon name="caret up" color="green" />
-                                :
-                                <Icon name="caret down" color="red" />
-                            }
-                            {`${props.theCoinDetailDTO.market_data.price_change_24h_in_currency[selectedCurrency]}
+                                }
+                            </Header>
+                            <Header as='h3' color={props.theme.secondaryColor}>
+                                {props.theCoinDetailDTO.market_data.price_change_percentage_24h >= 0 ?
+                                    <Icon name="caret up" color="green" />
+                                    :
+                                    <Icon name="caret down" color="red" />
+                                }
+                                {`${props.theCoinDetailDTO.market_data.price_change_24h_in_currency[selectedCurrency]}
                              ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}
-                        </Header>
-                        <Header style={{ fontSize: 14 }} color={props.theme.secondaryColor}>
-                            {`Market Cap Rank : ${props.theCoinDetailDTO?.market_cap_rank}`}
-                        </Header>
-                    </Container>
-                </Card.Content>
-            </Card>
-
+                            </Header>
+                            <Header style={{ fontSize: 14 }} color={props.theme.secondaryColor}>
+                                {`Market Cap Rank : ${props.theCoinDetailDTO?.market_cap_rank}`}
+                            </Header>
+                        </Container>
+                    </Card.Content>
+                </Card>
+            </Container>
         )
     }
 

@@ -15,7 +15,7 @@ function LandingPage(props: LandingPageProps) {
     const { coingeckTrending, isLoadingData, errorMessage } = useContext(AppDataContext);
 
     return (
-        <>
+        <Container>
             <Header 
                 size="huge" 
                 color={props.theme.primaryColor}
@@ -30,7 +30,7 @@ function LandingPage(props: LandingPageProps) {
                 {/* if there is no error, call the CoinCards component and transfer coingeck Trending data  */}
                 {errorMessage ? "Internal server error" : <CoinCards theCoingeckoDTO={coingeckTrending} />}
             </Container>
-        </>
+        </Container>
     )
 };
 
