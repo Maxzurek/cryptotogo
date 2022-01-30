@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { useNavigate } from "react-router-dom";
-import { Card, Container, Image } from "semantic-ui-react";
+import { Card, Container, Header, Image } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
+import { ThemeContextProps } from "../../themes/theme.models";
 import AppDataContext from "../appDataContext/AppDataContext";
-import { withTheme, WithThemeProps } from "../themeContext/withTheme";
+import { withTheme } from "../themeContext/withTheme";
 
-interface coinDetailProps extends WithThemeProps {
+interface coinDetailProps extends ThemeContextProps {
     theCoinDetailDTO: CoinDTO;
     clickable?: boolean
 }
@@ -38,24 +39,24 @@ function CoinDetail(props: coinDetailProps) {
     //We map detail information for each coin card
     const renderCard = () => {
         return (
-            <Card>
+            <Card color={props.theme.primaryColor}>
                 <Card.Content>
                     <Container as={'a'} fluid onClick={onClickCoin}>
                         <Image src={props.theCoinDetailDTO?.small} />
-                        <Card.Header as='h2' color={props.primaryColor}>
+                        <Header as='h2' color={props.theme.primaryColor}>
                             {props.theCoinDetailDTO?.name}{` (${props.theCoinDetailDTO?.symbol})`}
-                        </Card.Header>
-                        <Card.Description as='h3' color={props.primaryColor}>
+                        </Header>
+                        <Header as='h3' color={props.theme.secondaryColor}>
                             {`Last Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
                                 props.theCoinDetailDTO.current_price[selectedCurrency]
                                 :
                                 undefined} 
                                 ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`
                             }
-                        </Card.Description>
-                        <Card.Meta as='h2' color={props.secondaryColor}>
+                        </Header>
+                        <Header style={{fontSize: 14}} color={props.theme.secondaryColor}>
                             {`Market Cap Rank : ${props.theCoinDetailDTO?.market_cap_rank}`}
-                        </Card.Meta>
+                        </Header>
                     </Container>
                 </Card.Content>
             </Card>
