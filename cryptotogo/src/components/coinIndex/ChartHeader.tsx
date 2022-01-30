@@ -27,7 +27,7 @@ function ChartHeader(props: CoinHeaderProps) {
 
     const renderCard = () => {
         return (
-            <Grid verticalAlign="middle" centered style={{ marginTop: 60, marginBottom: 60 }}>
+            <Grid verticalAlign="middle" centered style={{ marginTop: 35, marginBottom: 35 }}>
                 <GridColumn width={4} style={{ padding: 0 }}>
                     <div className="ui">
                         <Image src={props.theCoinDetailDTO?.large} className="ui centered medium" />

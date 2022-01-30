@@ -105,7 +105,7 @@ export default function CoinIndex(props: CoinIndexProps) {
     <Container fluid>
       <ChartHeader theCoinDetailDTO={coinDTO} clickable={false} />
       <TimeFrameTab activeItem={activeItem} handleItemClick={handleItemClick} />
-      <Chart priceAction={priceAction} xAxisInterval={xAxisInterval} />
+      <Chart priceAction={priceAction} xAxisInterval={xAxisInterval} interval={xAxisInterval} />
     </Container>
   );
 };
