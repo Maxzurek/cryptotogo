@@ -1,23 +1,29 @@
 import { NavLink } from "react-router-dom";
 import { Grid, Menu, GridRow, GridColumn, Item, Image, Header, Container } from "semantic-ui-react";
+import { ThemeContextProps } from "../../themes/theme.models";
 import Media from "../mediaContext/Media";
+import { withTheme } from "../themeContext/withTheme";
 import SearchBar from "../utilities/SearchBar";
 import SelectCurrency from "../utilities/SelectCurrency";
 
-interface MainNavBarProps {
+interface MainNavBarProps extends ThemeContextProps {
     size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive'
 }
 
-MainNavBar.defaultProps = {
-    size: 'large'
-}
-
-export default function MainNavBar(props: MainNavBarProps) {
+function MainNavBar(props: MainNavBarProps) {
 
     const renderMobileNavBar = () => {
         return (
             <>
-                <Grid as={Menu} pointing secondary size="mini" color="blue" verticalAlign="bottom" columns={3}>
+                <Grid
+                    as={Menu}
+                    pointing
+                    secondary
+                    size="mini"
+                    color={props.theme.primaryColor}
+                    verticalAlign="bottom"
+                    columns={3}
+                >
                     <GridRow style={{ padding: 0 }}>
                         <GridColumn>
                             <Item as={NavLink} to='/'>
@@ -25,7 +31,9 @@ export default function MainNavBar(props: MainNavBarProps) {
                             </Item>
                         </GridColumn>
                         <GridColumn >
-                            <Header textAlign="right" as='p' style={{ padding: 5 }} >Select Currency</Header>
+                            <Header textAlign="right" as='p' color={props.theme.primaryColor}>
+                                Select a Currency
+                            </Header>
                         </GridColumn>
                         <GridColumn>
                             <SelectCurrency />
@@ -41,7 +49,15 @@ export default function MainNavBar(props: MainNavBarProps) {
 
     const renderTabletDesktopNavBar = () => {
         return (
-            <Grid as={Menu} stackable pointing secondary size={props.size} color="blue" verticalAlign="bottom">
+            <Grid
+                as={Menu}
+                stackable
+                pointing
+                secondary
+                size={props.size}
+                color={props.theme.primaryColor}
+                verticalAlign="bottom"
+            >
                 <GridRow style={{ padding: 0 }}>
                     <GridColumn width={2}>
                         <Item as={NavLink} to='/'>
@@ -54,7 +70,9 @@ export default function MainNavBar(props: MainNavBarProps) {
                         <SearchBar />
                     </GridColumn>
                     <GridColumn width={3}>
-                        <Header textAlign="right" as='h3' style={{ padding: 5 }} >Select Currency</Header>
+                        <Header as='h3' textAlign="right" style={{ padding: 5 }} color={props.theme.primaryColor}>
+                            Select a Currency
+                        </Header>
                     </GridColumn>
                     <GridColumn width={2}>
                         <SelectCurrency />
@@ -75,3 +93,5 @@ export default function MainNavBar(props: MainNavBarProps) {
         </>
     )
 };
+
+export default withTheme(MainNavBar)
