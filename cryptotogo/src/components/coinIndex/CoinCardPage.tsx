@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { Container, Grid, GridColumn, GridRow, Image } from "semantic-ui-react";
+import { Container, Grid, GridColumn, GridRow, Header, Image } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
+import { ThemeContextProps } from "../../themes/theme.models";
 import AppDataContext from "../appDataContext/AppDataContext";
+import { withTheme } from "../themeContext/withTheme";
 
-interface CoinCardPageProps {
+interface CoinCardPageProps extends ThemeContextProps {
     theCoinDetailDTO: CoinDTO;
     clickable?: boolean
-
 }
 
 CoinCardPage.defaultProps = {
     clickable: true
 }
-export default function CoinCardPage(props: CoinCardPageProps) {
+
+function CoinCardPage(props: CoinCardPageProps) {
 
     const { selectedCurrency } = useContext(AppDataContext);
 
@@ -27,20 +29,24 @@ export default function CoinCardPage(props: CoinCardPageProps) {
         return (
 
             <Container >
-                <Grid size="50" color="yellow" verticalAlign="middle" centered >
+                <Grid verticalAlign="middle" centered >
                     <GridRow style={{ padding: 30 }}>
                         <GridColumn width={2} >
-
                             <Image src={props.theCoinDetailDTO?.large} size="large" />
-
                         </GridColumn>
                         <GridColumn textAlign="center" width={4} >
-                            <h1>{props.theCoinDetailDTO?.name}{` (${props.theCoinDetailDTO?.symbol})`}</h1>
-                            <h4>{`Latest Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
-                                props.theCoinDetailDTO.current_price[selectedCurrency]
-                                :
-                                undefined} ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}</h4>
-                            <h5>Current Time: {date}</h5>
+                            <Header as="h1" color={props.theme.primaryColor}>
+                                {props.theCoinDetailDTO?.name}{` (${props.theCoinDetailDTO?.symbol})`}
+                            </Header>
+                            <Header as="h4" color={props.theme.secondaryColor}>
+                                {`Latest Price (${selectedCurrency.toUpperCase()}) : ${props.theCoinDetailDTO?.current_price ?
+                                    props.theCoinDetailDTO.current_price[selectedCurrency]
+                                    :
+                                    undefined} ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}
+                            </Header>
+                            <Header as="h5" color={props.theme.secondaryColor}>
+                                Current Time: {date}
+                            </Header>
                         </GridColumn>
                     </GridRow>
                 </Grid>
@@ -52,3 +58,5 @@ export default function CoinCardPage(props: CoinCardPageProps) {
         renderCard()
     )
 }
+
+export default withTheme(CoinCardPage)
