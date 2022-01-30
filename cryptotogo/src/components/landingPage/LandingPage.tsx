@@ -1,17 +1,29 @@
 import { useContext } from "react";
 import { Container, Dimmer, Header, Loader } from "semantic-ui-react";
+import { ThemeContextProps } from "../../themes/theme.models";
 import AppDataContext from "../appDataContext/AppDataContext";
+import { withTheme } from "../themeContext/withTheme";
+import SelectTheme from "../utilities/SelectTheme";
 import CoinCards from "./CoinCards";
 
+interface LandingPageProps extends ThemeContextProps{
 
-export default function LandingPage() {
+}
+
+function LandingPage(props: LandingPageProps) {
 
     //Get coingeck Trending data, isLoadingData value and error Messages from  AppDataContext
     const { coingeckTrending, isLoadingData, errorMessage } = useContext(AppDataContext);
 
     return (
         <>
-            <Header size="huge" color="blue" textAlign="center" style={{marginTop: 30, marginBottom: 30}}>Top 6 Best Trending Coins</Header>
+            <Header 
+                size="huge" 
+                color={props.theme.primaryColor}
+                textAlign="center" 
+                style={{marginTop: 30, marginBottom: 30}}>
+                    Top 6 Trending Coins
+            </Header>
             <Container>
                 <Dimmer active={isLoadingData}>
                     <Loader>Loading</Loader>
@@ -23,4 +35,4 @@ export default function LandingPage() {
     )
 };
 
-
+export default withTheme(LandingPage);
