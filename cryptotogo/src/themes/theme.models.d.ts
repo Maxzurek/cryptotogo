@@ -4,6 +4,7 @@ export interface ThemeContextProps{
 }
 
 export interface CryptoToGoTheming{
+    name: string;
     primaryColor: SemanticCOLORS;
     secondaryColor: SemanticCOLORS;
     backgroundColor?: string | undefined;
