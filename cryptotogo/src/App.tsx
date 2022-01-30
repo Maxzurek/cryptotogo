@@ -10,6 +10,7 @@ import { coingeckoCoinsTrending } from './endpoints';
 import { CoinDTO } from './models/coin.models';
 import AppDataContext from './components/appDataContext/AppDataContext';
 import MediaProvider from './components/mediaContext/MediaProvider';
+import ThemeProvider from './components/themeContext/ThemeProvider';
 
 export default function App() {
 
@@ -72,17 +73,19 @@ export default function App() {
     }}>
       <BrowserRouter>
         <MediaProvider>
-          <MainNavBar />
-          <Container fluid>
-            <Routes>
-              {routes.map(route =>
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.component}>
-                </Route>)}
-            </Routes>
-          </Container>
+          <ThemeProvider>
+            <MainNavBar />
+            <Container fluid>
+              <Routes>
+                {routes.map(route =>
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.component}>
+                  </Route>)}
+              </Routes>
+            </Container>
+          </ThemeProvider>
         </MediaProvider>
       </BrowserRouter>
     </AppDataContext.Provider>

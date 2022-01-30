@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
-import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
+import { CryptoToGoTheming } from "../../themes/theme.models";
+import { PrimaryTheme } from "../../themes/themes";
 import { ThemeContext } from "./ThemeContext";
 
 interface ThemeProviderProps{
@@ -8,17 +9,12 @@ interface ThemeProviderProps{
 
 export default function ThemeProvider(props: ThemeProviderProps) {
 
-    const [primaryColor, setPrimaryColor] = useState<SemanticCOLORS>();
-    const [secondaryColor, setSecondaryColor] = useState<SemanticCOLORS>();
+    const [theme, setTheme] = useState<CryptoToGoTheming>(PrimaryTheme);
 
     return(
         <ThemeContext.Provider value={{
-            themeContext: {
-                primaryColor: primaryColor,
-                setPrimaryColor: setPrimaryColor,
-                secondaryColor: secondaryColor,
-                setSecondaryColor: setSecondaryColor
-            }
+            theme: theme,
+            setTheme: setTheme
         }}>
             {props.children}
         </ThemeContext.Provider>

@@ -1,11 +1,6 @@
 import { useContext } from "react";
-import { SemanticCOLORS } from "semantic-ui-react";
+import { ThemeContextProps } from "../../themes/theme.models";
 import { ThemeContext } from "./ThemeContext";
-
-export interface WithThemeProps{
-    primaryColor: SemanticCOLORS;
-    secondaryColor: SemanticCOLORS
-}
 
 /**
  * This is a high order component. 
@@ -15,12 +10,12 @@ export interface WithThemeProps{
  * @param WrappedComponent 
  * @returns 
  */
-export function withTheme<T extends WithThemeProps = WithThemeProps>(
+export function withTheme<T extends ThemeContextProps = ThemeContextProps>(
     WrappedComponent: React.ComponentType<T>
 ) {
-    return function ComponentWithTheme(props: Omit<T, keyof WithThemeProps>) {
+    return function ComponentWithTheme(props: Omit<T, keyof ThemeContextProps>) {
 
-        const { themeContext } = useContext(ThemeContext);
+        const themeContext = useContext(ThemeContext);
 
         return (
             <WrappedComponent {...(props as T)} {...themeContext}/**Inject themeContext through our component props */ />

@@ -1,13 +1,11 @@
 import { createContext } from "react";
-import { SemanticCOLORS } from "semantic-ui-react";
+import { CryptoToGoTheming } from "../../themes/theme.models";
+import { PrimaryTheme } from "../../themes/themes";
 
 export const ThemeContext = createContext<{
-    themeContext: Object
+    theme: CryptoToGoTheming;
+    setTheme(themeContext: CryptoToGoTheming): void;
 }>({
-    themeContext: {
-        primaryColor: 'blue' as SemanticCOLORS,
-        setPrimaryColor: ()=>{},
-        secondaryColor: 'teal' as SemanticCOLORS,
-        setSecondaryColor: ()=>{},
-    }
+    theme: PrimaryTheme,
+    setTheme: ()=>{}
 })
