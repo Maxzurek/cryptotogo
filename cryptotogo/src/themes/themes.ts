@@ -1,17 +1,17 @@
 import { CryptoToGoTheming } from "./theme.models";
 
-export const MovieToGoTheme : CryptoToGoTheming = {
-    name: 'MovieToGo',
+export const CryptoToGoTheme : CryptoToGoTheming = {
+    name: 'CryptoToGo',
     primaryColor: "blue",
     secondaryColor: "yellow",
-    backgroundColor: "rgba(99, 97, 98, 0.19)"
+    backgroundColor: "rgba(47, 108, 179, 0.3)"
 }
 
 export const DreamerTheme : CryptoToGoTheming = {
     name: 'Dreamer',
     primaryColor: "violet",
     secondaryColor: "teal",
-    backgroundColor: "rgba(199, 193, 206, 0.63)"
+    backgroundColor: "rgba(116, 55, 154, 0.3)"
 }
 
 export const SolarizedTheme : CryptoToGoTheming = {

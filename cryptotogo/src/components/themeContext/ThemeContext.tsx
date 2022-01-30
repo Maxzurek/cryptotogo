@@ -1,11 +1,11 @@
 import { createContext } from "react";
 import { CryptoToGoTheming } from "../../themes/theme.models";
-import { MovieToGoTheme } from "../../themes/themes";
+import { CryptoToGoTheme } from "../../themes/themes";
 
 export const ThemeContext = createContext<{
     theme: CryptoToGoTheming;
     setTheme(themeContext: CryptoToGoTheming): void;
 }>({
-    theme: MovieToGoTheme,
+    theme: CryptoToGoTheme,
     setTheme: ()=>{}
 })

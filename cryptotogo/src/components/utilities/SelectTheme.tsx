@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Select } from "semantic-ui-react";
 import { ThemeContextProps } from "../../themes/theme.models";
-import { DreamerTheme, MovieToGoTheme, SolarizedTheme } from "../../themes/themes";
+import { DreamerTheme, CryptoToGoTheme, SolarizedTheme } from "../../themes/themes";
 import { withTheme } from "../themeContext/withTheme";
 
 interface SelectThemeProps extends ThemeContextProps {
@@ -13,13 +13,13 @@ function SelectTheme(props: SelectThemeProps) {
     const [value, setValue] = useState('');
 
     const themes = [
-        { key: '1', value: MovieToGoTheme.name, text: MovieToGoTheme.name },
+        { key: '1', value: CryptoToGoTheme.name, text: CryptoToGoTheme.name },
         { key: '2', value: DreamerTheme.name, text: DreamerTheme.name },
         { key: '3', value: SolarizedTheme.name, text: SolarizedTheme.name },
     ]
 
     useEffect(() => {
-        setValue(MovieToGoTheme.name);
+        setValue(CryptoToGoTheme.name);
     }, [])
 
     const onChangeTheme = (event: React.SyntheticEvent<HTMLElement, Event>, data: any) => {
@@ -27,8 +27,8 @@ function SelectTheme(props: SelectThemeProps) {
         setValue(data.value)
 
         switch (data.value) {
-            case MovieToGoTheme.name:
-                props.setTheme(MovieToGoTheme)
+            case CryptoToGoTheme.name:
+                props.setTheme(CryptoToGoTheme)
                 break;
             case DreamerTheme.name:
                 props.setTheme(DreamerTheme)
