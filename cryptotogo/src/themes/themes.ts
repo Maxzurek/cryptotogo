@@ -1,8 +1,8 @@
 import { CryptoToGoTheming } from "./theme.models";
 
 export const PrimaryTheme : CryptoToGoTheming = {
-    primaryColor: "yellow",
-    secondaryColor: "blue"
+    primaryColor: "blue",
+    secondaryColor: "yellow"
 }
 
 export const DreamerTheme : CryptoToGoTheming = {
