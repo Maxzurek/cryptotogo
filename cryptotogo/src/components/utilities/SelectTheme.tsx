@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Select } from "semantic-ui-react";
+import { Dropdown, DropdownItem, DropdownItemProps, DropdownMenu, Icon, Select } from "semantic-ui-react";
 import { ThemeContextProps } from "../../themes/theme.models";
 import { DreamerTheme, CryptoToGoTheme, SolarizedTheme } from "../../themes/themes";
 import { withTheme } from "../themeContext/withTheme";
@@ -10,21 +10,36 @@ interface SelectThemeProps extends ThemeContextProps {
 
 function SelectTheme(props: SelectThemeProps) {
 
-    const [value, setValue] = useState('');
+    const [themeName, setThemeName] = useState('');
 
     const themes = [
-        { key: '1', value: CryptoToGoTheme.name, text: CryptoToGoTheme.name },
-        { key: '2', value: DreamerTheme.name, text: DreamerTheme.name },
-        { key: '3', value: SolarizedTheme.name, text: SolarizedTheme.name },
+        {
+            key: '1',
+            value: CryptoToGoTheme.name,
+            text: CryptoToGoTheme.name,
+            label: { color: CryptoToGoTheme.primaryColor, empty: true, circular: true },
+        },
+        {
+            key: '2',
+            value: DreamerTheme.name,
+            text: DreamerTheme.name,
+            label: { color: DreamerTheme.primaryColor, empty: true, circular: true },
+        },
+        {
+            key: '3',
+            value: SolarizedTheme.name,
+            text: SolarizedTheme.name,
+            label: { color: SolarizedTheme.primaryColor, empty: true, circular: true },
+        },
     ]
 
     useEffect(() => {
-        setValue(CryptoToGoTheme.name);
+        setThemeName(CryptoToGoTheme.name);
     }, [])
 
-    const onChangeTheme = (event: React.SyntheticEvent<HTMLElement, Event>, data: any) => {
+    const onChangeTheme = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: DropdownItemProps) => {
 
-        setValue(data.value)
+        setThemeName(data.value as string)
 
         switch (data.value) {
             case CryptoToGoTheme.name:
@@ -43,7 +58,20 @@ function SelectTheme(props: SelectThemeProps) {
 
     return (
         <>
-            <Select fluid options={themes} onChange={onChangeTheme} value={value} />
+            <Dropdown
+                item
+                trigger={<><Icon name='theme' color={props.theme.primaryColor} />{`Themes (${themeName})`}</>}
+                icon={null}
+            >
+                <DropdownMenu>
+                    <Dropdown.Menu scrolling>
+                        {themes.map((option) => (
+                            <DropdownItem {...option} onClick={onChangeTheme}/>
+                        ))}
+                    </Dropdown.Menu>
+                </DropdownMenu>
+            </Dropdown>
+            {/* <Select fluid options={themes} onChange={onChangeTheme} value={value} /> */}
         </>
     )
 };
