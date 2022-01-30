@@ -1,16 +1,22 @@
 // Coingecko Trending
-export interface CoinDTO{
+export interface CoinDTO {
     id: string;
     name: string;
     symbol: string;
-    market_cap_rank : number
-    thumb : string
-    small:string
-    large:string
-    current_price : any
+    market_data: any;
+    market_cap_rank: number
+    thumb: string
+    small: string
+    large: string
+    current_price: any
 }
 
-export interface Currencies{
+export interface PriceAction {
+    name: string
+    price: number
+}
+
+export interface Currencies {
     usd: string;
     ars: string;
     aud: string;
