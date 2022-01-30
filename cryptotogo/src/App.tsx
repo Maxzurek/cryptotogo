@@ -11,6 +11,7 @@ import { CoinDTO } from './models/coin.models';
 import AppDataContext from './components/appDataContext/AppDataContext';
 import MediaProvider from './components/mediaContext/MediaProvider';
 import ThemeProvider from './components/themeContext/ThemeProvider';
+import Footer from './components/footer/Footer';
 
 export default function App() {
 
@@ -74,7 +75,9 @@ export default function App() {
       <BrowserRouter>
         <MediaProvider>
           <ThemeProvider>
+
             <MainNavBar />
+
             <Container fluid>
               <Routes>
                 {routes.map(route =>
@@ -85,6 +88,9 @@ export default function App() {
                   </Route>)}
               </Routes>
             </Container>
+
+            <Footer />
+
           </ThemeProvider>
         </MediaProvider>
       </BrowserRouter>
