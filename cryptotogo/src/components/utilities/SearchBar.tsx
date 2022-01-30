@@ -54,10 +54,6 @@ interface SearchBarProps {
     size?: "mini" | "tiny" | "small" | "large" | "big" | "massive" | "huge" | undefined
 }
 
-SearchBar.defaultProps = {
-    size: "large"
-}
-
 export default function SearchBar(props: SearchBarProps) {
 
     const [timer, setTimer] = useState<NodeJS.Timeout>();

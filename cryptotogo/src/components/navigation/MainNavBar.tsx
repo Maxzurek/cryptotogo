@@ -14,7 +14,7 @@ function MainNavBar(props: MainNavBarProps) {
 
     const renderMobileNavBar = () => {
         return (
-            <Container fluid style={{ backgroundColor: props.theme.backgroundColor}}>
+            <Container fluid style={{ backgroundColor: props.theme.backgroundColor }}>
                 <Grid
                     as={Menu}
                     pointing
@@ -49,7 +49,7 @@ function MainNavBar(props: MainNavBarProps) {
 
     const renderTabletDesktopNavBar = () => {
         return (
-            <Container fluid style={{ backgroundColor: props.theme.backgroundColor}}>
+            <Container fluid style={{ backgroundColor: props.theme.backgroundColor }}>
                 <Grid
                     as={Menu}
                     stackable
@@ -68,7 +68,7 @@ function MainNavBar(props: MainNavBarProps) {
                         <GridColumn width={3}>
                         </GridColumn>
                         <GridColumn width={6}>
-                            <SearchBar />
+                            <SearchBar size="huge" />
                         </GridColumn>
                         <GridColumn width={3}>
                             <Header as='h3' textAlign="right" style={{ padding: 5 }} color={props.theme.primaryColor}>
