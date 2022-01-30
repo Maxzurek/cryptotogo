@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { JsxAttribute } from "typescript";
 
 export const MediaContext = createContext<{
     isMobile: boolean;

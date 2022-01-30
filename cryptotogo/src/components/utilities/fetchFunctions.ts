@@ -8,6 +8,7 @@ export const fetchCoinInfo = async (id: string) : Promise<CoinDTO> => { // Going
         id: "",
         name: "",
         symbol: "",
+        market_data: "",
         market_cap_rank: 0,
         thumb: "",
         small: "",
@@ -19,11 +20,11 @@ export const fetchCoinInfo = async (id: string) : Promise<CoinDTO> => { // Going
         .then(response => {
 
             let data = response.data;
-            
             // We only keep the data we want
             coinDTO.id = data.id;
             coinDTO.name = data.name;
             coinDTO.symbol = data.symbol;
+            coinDTO.market_data = data.market_data;
             coinDTO.market_cap_rank = data.market_cap_rank;
             coinDTO.thumb = data.image.thumb;
             coinDTO.small = data.image.small;

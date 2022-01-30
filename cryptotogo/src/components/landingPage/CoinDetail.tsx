@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { useNavigate } from "react-router-dom";
-import { Card, Container, Header, Image } from "semantic-ui-react";
+import { Card, Container, Header, Icon, Image } from "semantic-ui-react";
 import { CoinDTO } from "../../models/coin.models";
 import { ThemeContextProps } from "../../themes/theme.models";
 import AppDataContext from "../appDataContext/AppDataContext";
@@ -25,7 +25,7 @@ function CoinDetail(props: coinDetailProps) {
 
     //set filp animation of the cards when theCoinDetailDTO values change
     useEffect(() => {
-        setFlipped(!isFlipped);
+        setFlipped(isFlipped => !isFlipped);
     }, [props.theCoinDetailDTO])
 
     //When we click on each coin card, we tranfer its detail data to /coin page
@@ -54,7 +54,16 @@ function CoinDetail(props: coinDetailProps) {
                                 ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`
                             }
                         </Header>
-                        <Header style={{fontSize: 14}} color={props.theme.secondaryColor}>
+                        <Header as='h3' color={props.theme.secondaryColor}>
+                            {props.theCoinDetailDTO.market_data.price_change_percentage_24h >= 0 ?
+                                <Icon name="caret up" color="green" />
+                                :
+                                <Icon name="caret down" color="red" />
+                            }
+                            {`${props.theCoinDetailDTO.market_data.price_change_24h_in_currency[selectedCurrency]}
+                             ${selectedCurrency === 'eth' || selectedCurrency === 'btc' ? '' : '$'}`}
+                        </Header>
+                        <Header style={{ fontSize: 14 }} color={props.theme.secondaryColor}>
                             {`Market Cap Rank : ${props.theCoinDetailDTO?.market_cap_rank}`}
                         </Header>
                     </Container>

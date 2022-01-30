@@ -15,8 +15,7 @@ import Footer from './components/footer/Footer';
 
 export default function App() {
 
-  const [fetchTimer, setFetchTimer] = useState<NodeJS.Timeout>();
-  const [fetchData, setFetchData] = useState<boolean>(false);
+  const [refreshData, setRefreshData] = useState<boolean>(false);
   const [selectedCurrency, setSelectedCurrency] = useState<string>('usd');
   const [coingeckoTrending, setCoingeckoTrending] = useState<CoinDTO[]>([]);
   const [isLoadingData, setLoadingData] = useState<boolean>(true);
@@ -36,7 +35,7 @@ export default function App() {
 
           coins.map((coin: any, index: number) => {
             requests.push(fetchCoinInfo(coin.item.id)) // See fetchFunctions.ts inside utilities folder
-            return () => { }
+            return requests;
           })
 
           await axios.all(requests) // Get additionnal infos for each trending coins (Goingecko get market_data by coin Id)
@@ -51,15 +50,13 @@ export default function App() {
         })
     }
 
-    setFetchTimer( // Update trending coins every 30 seconds
-      setTimeout(() => {
-        setFetchData(!fetchData)
-      }, 30000)
-    );
+    setTimeout(() => { // We want to fetch data every 30 seconds
+      setRefreshData(!refreshData)
+    }, 30000)
 
     getCoinsTrendingAsync();
 
-  }, [fetchData])
+  }, [refreshData])
 
   return (
     <AppDataContext.Provider value={{  // This context provider is available through all our application.

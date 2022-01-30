@@ -3,7 +3,6 @@ import { Container, Dimmer, Header, Loader } from "semantic-ui-react";
 import { ThemeContextProps } from "../../themes/theme.models";
 import AppDataContext from "../appDataContext/AppDataContext";
 import { withTheme } from "../themeContext/withTheme";
-import SelectTheme from "../utilities/SelectTheme";
 import CoinCards from "./CoinCards";
 
 interface LandingPageProps extends ThemeContextProps{
