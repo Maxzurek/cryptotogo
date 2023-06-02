@@ -1,6 +1,5 @@
 # CryptoToGo
 
-School project React application.<br/>
 Search for any cryptocurrency and get some basic information like:<br/>
 - Coin name
 - Market cap rank
